@@ -7,23 +7,24 @@
     tools:context=".QuonActivity11">
 
     <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tab_layout"
+        android:id="@+id/Mic_tab_layout"
+        style="@style/Widget.MaterialComponents.TabLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:tabMode="fixed"
-        app:tabGravity="fill"
-        style="@style/Widget.MaterialComponents.TabLayout"
-        app:tabTextAppearance="@style/SelectedTabStyle"
-        app:tabBackground="@drawable/tab_selector"
-        app:tabIndicatorColor="@color/indicator_color"
-        app:tabSelectedTextColor="@color/selected_tab_text"
-        app:tabIconTint="@drawable/tab_icon_color_selector"
+        android:layout_marginTop="0dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@id/Mic_toolbar"
+        app:tabBackground="@drawable/tab_selector"
+        app:tabGravity="fill"
+        app:tabIconTint="@drawable/tab_icon_color_selector"
+        app:tabIndicatorColor="@color/indicator_color"
+        app:tabMode="fixed"
+        app:tabSelectedTextColor="@color/selected_tab_text"
+        app:tabTextAppearance="@style/SelectedTabStyle" />
 
     <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/view_pager"
+        android:id="@+id/Mic_view_pager"
         android:layout_width="391dp"
         android:layout_height="666dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -31,5 +32,17 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/Mic_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#8D63FF"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:titleTextColor="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -2,11 +2,13 @@
 package michael.quon.n01565129.mq;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager2.widget.ViewPager2;
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
 
 import android.os.Bundle;
+import android.view.Menu;
 
 public class QuonActivity11 extends AppCompatActivity {
 
@@ -15,8 +17,11 @@ public class QuonActivity11 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ViewPager2 viewPager = findViewById(R.id.view_pager);
-        TabLayout tabLayout = findViewById(R.id.tab_layout);
+        ViewPager2 viewPager = findViewById(R.id.Mic_view_pager);
+        TabLayout tabLayout = findViewById(R.id.Mic_tab_layout);
+
+        Toolbar toolbar = findViewById(R.id.Mic_toolbar);
+        setSupportActionBar(toolbar);
 
         // Create and set up adapter for ViewPager
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager(), getLifecycle());
@@ -43,4 +48,11 @@ public class QuonActivity11 extends AppCompatActivity {
             }
         }).attach();
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
 }
