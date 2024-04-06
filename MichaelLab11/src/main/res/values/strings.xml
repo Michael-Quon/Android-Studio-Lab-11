@@ -2,4 +2,12 @@
     <string name="app_name">MichaelLab11</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="tab_icon_1">Tab 1 icon</string>
+    <string name="michael">Michael</string>
+    <string name="quon">Quon</string>
+    <string name="n01565129">N01565129</string>
+    <string name="tab_icon_2">Tab Icon 2</string>
+    <string name="tab_icon_3">Tab icon 3</string>
+    <string name="tab">"Tab "</string>
+    <string name="michael_quon">Michael Quon</string>
 </resources>
