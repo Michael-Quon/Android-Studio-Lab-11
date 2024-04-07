@@ -23,6 +23,9 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyCC7HYMMytL0xM2VmDLE2v3qBc3xABuank" />
 
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-3638144870773974~5913562186"/>
 
         <activity
             android:name=".QuonActivity11"

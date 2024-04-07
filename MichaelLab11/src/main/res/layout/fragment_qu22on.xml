@@ -5,11 +5,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Qu22on">
-
-    <!-- TextView for displaying full name and student ID -->
-
-    <!-- FragmentContainerView for embedding the map -->
+    tools:context=".Qu22on"
+    android:background="@color/grey_white">
 
     <TextView
         android:id="@+id/Mic_fullNameTextView"

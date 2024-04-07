@@ -47,5 +47,16 @@
     <string name="channel_for_location_notifications">Channel for location notifications</string>
     <string name="location_snackbar_message" translatable="false">Latitude: %.4f, Longitude: %.4f</string>
     <string name="show_notification">Show Notification</string>
+    <string name="embed_websties">Embed Web-Sites</string>
+    <string name="saved">Saved</string>
+    <string name="adclickcounter" translatable="false">adClickCounter</string>
+
+
+    <string-array name="website_array">
+        <item>Select URL</item>
+        <item>CTV News</item>
+        <item>NBA</item>
+        <item>Weather Network</item>
+    </string-array>
 
 </resources>
