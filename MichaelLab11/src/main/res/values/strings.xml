@@ -17,4 +17,17 @@
     <string name="delete">Delete</string>
     <string name="save">Save</string>
     <string name="name_id">Michael Quon N01565129</string>
+    <string name="course_name">Course Name</string>
+    <string name="course_description">Course Description</string>
+    <string name="blank" translatable="false" />
+    <string name="shared_preferences" translatable="false">shared preferences</string>
+    <string name="please_fill_in_both_fields" translatable="false">Please fill in both fields</string>
+    <string name="deleted_all_courses" translatable="false">Deleted all courses</string>
+    <string name="courses" translatable="false">courses</string>
+    <string name="saved_data_to_sharedpreferences" translatable="false">Saved data to SharedPreferences</string>
+    <string name="invalid_course_name_format">Invalid course name format</string>
+    <string name="course_name_regex">[A-Z]{4}-\\d{3,4}</string>
+    <string name="no_data_to_delete">No Data to Delete!</string>
+    <string name="alphabet">abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ</string>
+
 </resources>
