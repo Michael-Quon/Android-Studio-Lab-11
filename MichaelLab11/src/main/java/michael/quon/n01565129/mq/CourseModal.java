@@ -19,20 +19,29 @@ public class CourseModal {
         this.courseDescription = courseDescription;
     }
 
-    // creating getter and setter methods.
+    // Getter method for courseId
+    public String getCourseId() {
+        return courseId;
+    }
+
+    // Getter method for courseName
     public String getCourseName() {
         return courseName;
     }
 
+    // Setter method for courseName
     public void setCourseName(String courseName) {
         this.courseName = courseName;
     }
 
+    // Getter method for courseDescription
     public String getCourseDescription() {
         return courseDescription;
     }
 
+    // Setter method for courseDescription
     public void setCourseDescription(String courseDescription) {
         this.courseDescription = courseDescription;
     }
 }
+

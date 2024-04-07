@@ -12,12 +12,11 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -115,6 +114,18 @@ public class Mi11chael extends Fragment {
             }
         });
 
+        adapter.setOnItemLongClickListener(position -> {
+            // Prompt the user to confirm deletion
+            AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+            builder.setMessage(R.string.confirm_delete_message)
+                    .setPositiveButton(R.string.yes, (dialog, which) -> {
+                        // If user confirms deletion, remove the selected record
+                        deleteCourse(position);
+                    })
+                    .setNegativeButton(R.string.no, null)
+                    .show();
+        });
+
         return view;
     }
 
@@ -163,8 +174,8 @@ public class Mi11chael extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        // Add a ValueEventListener to fetch data from Firebase when the app starts
-        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("courses");
+        // Add a ValueEventListener to listen for changes in Firebase database
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference(getString(R.string.courses));
         databaseReference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -190,6 +201,24 @@ public class Mi11chael extends Fragment {
         });
     }
 
+    // Method to delete a specific course from RecyclerView and Firebase Realtime Database
+    private void deleteCourse(int position) {
+        // Get the courseId of the course to be deleted
+        CourseModal deletedCourse = courseModalArrayList.get(position);
+        String courseId = deletedCourse.getCourseId();
 
+        // Remove the course from the RecyclerView
+        courseModalArrayList.remove(position);
+        adapter.notifyItemRemoved(position);
 
+        // Remove the course from the Firebase Realtime Database
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference(getString(R.string.courses));
+        databaseReference.child(courseId).removeValue().addOnSuccessListener(aVoid -> {
+            // Course successfully deleted from Firebase
+            Toast.makeText(getContext(), R.string.course_deleted, Toast.LENGTH_SHORT).show();
+        }).addOnFailureListener(e -> {
+            // Failed to delete course from Firebase
+            Toast.makeText(getContext(), getString(R.string.failed_to_delete_course) + e.getMessage(), Toast.LENGTH_SHORT).show();
+        });
+    }
 }

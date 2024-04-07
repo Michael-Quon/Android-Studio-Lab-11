@@ -32,5 +32,10 @@
     <string name="failed_to_fetch_data_from_firebase">"Failed to fetch data from Firebase: "</string>
     <string name="ceng_258_lab11">ceng-258-lab11</string>
     <string name="failed_to_delete_data_from_firebase">Failed to delete data from Firebase!</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="confirm_delete_message">Confirm Delete</string>
+    <string name="course_deleted">Course Deleted</string>
+    <string name="failed_to_delete_course">Failed to delete course</string>
 
 </resources>
