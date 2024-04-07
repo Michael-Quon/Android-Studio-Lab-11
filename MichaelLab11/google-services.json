@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "619137498193",
+    "project_id": "ceng-258-lab11",
+    "storage_bucket": "ceng-258-lab11.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:619137498193:android:fba0547641c3a6188d4c70",
+        "android_client_info": {
+          "package_name": "michael.quon.n01565129.mq"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDdxaVzzj9SjLIEQVak6tmPBEipPRnEXE4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

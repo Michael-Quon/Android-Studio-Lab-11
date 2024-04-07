@@ -1,3 +1,4 @@
+// Michael Quon N01565129
 package michael.quon.n01565129.mq;
 
 import android.content.Context;
@@ -10,10 +11,18 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -51,47 +60,60 @@ public class Mi11chael extends Fragment {
         // Build RecyclerView
         buildRecyclerView();
 
-        // Add button click listener
-        addBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Add course to the list
-                String name = courseNameEdt.getText().toString().toUpperCase(); // Convert to uppercase
-                String desc = courseDescEdt.getText().toString();
-                if (!name.isEmpty() && !desc.isEmpty()) {
-                    if (isValidCourseName(name)) {
-                        courseModalArrayList.add(new CourseModal(name, desc));
-                        adapter.notifyDataSetChanged(); // Notify RecyclerView adapter
-                        saveDataToSharedPreferences(); // Save data to SharedPreferences
-                        courseNameEdt.setText(getString(R.string.blank)); // Clear course name field
-                        courseDescEdt.setText(getString(R.string.blank)); // Clear course description field
-                    } else {
-                        courseNameEdt.setError(getString(R.string.invalid_course_name_format));
-                    }
-                } else {
-                    Toast.makeText(getContext(), R.string.please_fill_in_both_fields, Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
+        addBtn.setOnClickListener(v -> {
+            // Add course to the list
+            String name = courseNameEdt.getText().toString().toUpperCase(); // Convert to uppercase
+            String desc = courseDescEdt.getText().toString();
+            if (!name.isEmpty() && !desc.isEmpty()) {
+                if (isValidCourseName(name)) {
+                    // Store course into Firebase Database
+                    DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference(getString(R.string.courses));
+                    String courseId = databaseReference.push().getKey(); // Generate unique key for the course
+                    CourseModal newCourse = new CourseModal(courseId, name, desc); // Use the constructor that accepts courseId, name, and description
+                    assert courseId != null;
+                    databaseReference.child(courseId).setValue(newCourse); // Add course to Firebase
 
-        // Delete button click listener
-        deleteBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Check if there is data to delete
-                if (courseModalArrayList.isEmpty()) {
-                    // Display toast indicating no data to delete
-                    Toast.makeText(getContext(), R.string.no_data_to_delete, Toast.LENGTH_SHORT).show();
-                } else {
-                    // Clear the list of courses
-                    courseModalArrayList.clear();
+                    // Add course to RecyclerView
+                    courseModalArrayList.add(newCourse);
                     adapter.notifyDataSetChanged(); // Notify RecyclerView adapter
-                    clearSharedPreferences(); // Clear data in SharedPreferences
-                    Toast.makeText(getContext(), R.string.deleted_all_courses, Toast.LENGTH_SHORT).show();
+
+                    // Save data to SharedPreferences
+                    saveDataToSharedPreferences();
+
+                    // Clear input fields
+                    courseNameEdt.setText(getString(R.string.blank)); // Clear course name field
+                    courseDescEdt.setText(getString(R.string.blank)); // Clear course description field
+                } else {
+                    courseNameEdt.setError(getString(R.string.invalid_course_name_format));
                 }
+            } else {
+                Toast.makeText(getContext(), R.string.please_fill_in_both_fields, Toast.LENGTH_SHORT).show();
             }
         });
 
+        deleteBtn.setOnClickListener(v -> {
+            if (courseModalArrayList.isEmpty()) {
+                // If no data available
+                Toast.makeText(getContext(), R.string.no_data_to_delete, Toast.LENGTH_SHORT).show();
+            } else {
+                // Clear the RecyclerView and the list of courses
+                courseModalArrayList.clear();
+                adapter.notifyDataSetChanged(); // Notify RecyclerView adapter
+
+                // Delete the entire records from Firebase database
+                DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference(getString(R.string.courses));
+                databaseReference.removeValue().addOnSuccessListener(aVoid -> {
+                    // Data successfully deleted from Firebase
+                    Toast.makeText(getContext(), R.string.deleted_all_courses, Toast.LENGTH_SHORT).show();
+                }).addOnFailureListener(e -> {
+                    // Failed to delete data from Firebase
+                    Toast.makeText(getContext(), getString(R.string.failed_to_delete_data_from_firebase) + e.getMessage(), Toast.LENGTH_SHORT).show();
+                });
+
+                // Clear data in SharedPreferences
+                clearSharedPreferences();
+            }
+        });
 
         return view;
     }
@@ -137,4 +159,37 @@ public class Mi11chael extends Fragment {
         // Validate course name format: 4 letters, - , 3 to 4 numbers
         return name.matches("[A-Z]{4}-\\d{3,4}");
     }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        // Add a ValueEventListener to fetch data from Firebase when the app starts
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference("courses");
+        databaseReference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                // Clear the existing data list
+                courseModalArrayList.clear();
+                // Iterate through the dataSnapshot to retrieve data
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    // Deserialize the data and add it to the list
+                    CourseModal courseModal = snapshot.getValue(CourseModal.class);
+                    if (courseModal != null) {
+                        courseModalArrayList.add(courseModal);
+                    }
+                }
+                // Notify the adapter of the data change
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                // Handle any errors
+                Toast.makeText(getContext(), getString(R.string.failed_to_fetch_data_from_firebase) + databaseError.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+
+
 }

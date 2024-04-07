@@ -25,7 +25,7 @@
 
     <EditText
         android:id="@+id/Mic_idEdtCourseName"
-        android:layout_width="251dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="76dp"
         android:hint="@string/enter_course_name"
@@ -34,35 +34,23 @@
 
     <EditText
         android:id="@+id/Mic_idEdtCourseDescription"
-        android:layout_width="249dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="2dp"
         android:layout_marginTop="144dp"
         android:hint="@string/enter_course_description"
-        android:digits="@string/alphabet"
-        app:layout_constraintStart_toStartOf="parent"
+        android:inputType="text"
+        android:digits="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ ()-_"
         app:layout_constraintTop_toTopOf="parent" />
+
 
     <Button
         android:id="@+id/Mic_idBtnAdd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="284dp"
-        android:layout_marginTop="144dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="208dp"
         android:background="@color/purple"
         android:text="@string/add"
-        android:textColor="@color/white"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/Mic_idBtnSave"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="286dp"
-        android:layout_marginTop="76dp"
-        android:background="@color/purple"
-        android:text="@string/save"
         android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -71,8 +59,8 @@
         android:id="@+id/Mic_delete_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="210dp"
+        android:layout_marginStart="264dp"
+        android:layout_marginTop="208dp"
         android:background="@color/purple"
         android:text="@string/delete"
         android:textColor="@color/white"

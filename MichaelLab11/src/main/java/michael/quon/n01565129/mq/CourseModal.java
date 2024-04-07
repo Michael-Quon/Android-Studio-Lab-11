@@ -3,13 +3,18 @@ package michael.quon.n01565129.mq;
 
 public class CourseModal {
 
-    // variables for our course
-    // name and description.
+    private String courseId;
     private String courseName;
     private String courseDescription;
 
-    // creating constructor for our variables.
-    public CourseModal(String courseName, String courseDescription) {
+    // Default constructor (no-argument constructor)
+    public CourseModal() {
+        // Required by Firebase for deserialization
+    }
+
+    // Constructor with courseId, courseName, and courseDescription
+    public CourseModal(String courseId, String courseName, String courseDescription) {
+        this.courseId = courseId;
         this.courseName = courseName;
         this.courseDescription = courseDescription;
     }
