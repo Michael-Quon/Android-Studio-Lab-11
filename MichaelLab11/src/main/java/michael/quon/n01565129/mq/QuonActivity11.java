@@ -32,7 +32,7 @@ public class QuonActivity11 extends AppCompatActivity {
 
         // Connect TabLayout with ViewPager
         new TabLayoutMediator(tabLayout, viewPager, (tab, position) -> {
-            // Set tab text or icon here
+            // Set tab text/icon
             switch (position) {
                 case 0:
                     tab.setIcon(R.drawable.michael_icon);

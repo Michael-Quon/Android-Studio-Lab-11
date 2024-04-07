@@ -11,4 +11,10 @@
     <string name="tab">"Tab "</string>
     <string name="michael_quon">Michael Quon</string>
     <string name="contacts">contacts</string>
+    <string name="enter_course_name">Enter Course Name</string>
+    <string name="enter_course_description">Enter Course Description</string>
+    <string name="add">Add</string>
+    <string name="delete">Delete</string>
+    <string name="save">Save</string>
+    <string name="name_id">Michael Quon N01565129</string>
 </resources>

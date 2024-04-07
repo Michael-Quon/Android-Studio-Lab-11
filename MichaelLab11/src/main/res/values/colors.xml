@@ -11,4 +11,7 @@
     <color name="unselected_tab_text">#000000</color>
     <color name="unselected_tab_icon">#000000</color>
     <color name="indicator_color">#FF0000</color>
+    <color name="purple">#673AB7</color>
+    <color name="light_pink">#FFDAF1</color>
+
 </resources>
