@@ -23,6 +23,8 @@ public class QuonActivity11 extends AppCompatActivity {
         ViewPager2 viewPager = findViewById(R.id.Mic_view_pager);
         TabLayout tabLayout = findViewById(R.id.Mic_tab_layout);
 
+        tabLayout.setTabMode(TabLayout.MODE_FIXED);
+
         Toolbar toolbar = findViewById(R.id.Mic_toolbar);
         setSupportActionBar(toolbar);
 

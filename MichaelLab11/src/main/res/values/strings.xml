@@ -37,5 +37,15 @@
     <string name="confirm_delete_message">Confirm Delete</string>
     <string name="course_deleted">Course Deleted</string>
     <string name="failed_to_delete_course">Failed to delete course</string>
+    <string name="humber_college">Humber College</string>
+    <string name="brampton_michael">Brampton + Michael</string>
+    <string name="_michael">" Michael"</string>
+    <string name="dismiss">Dismiss</string>
+    <string name="location">Location</string>
+    <string name="current_location">Current Location</string>
+    <string name="location_channel">Location Channel</string>
+    <string name="channel_for_location_notifications">Channel for location notifications</string>
+    <string name="location_snackbar_message" translatable="false">Latitude: %.4f, Longitude: %.4f</string>
+    <string name="show_notification">Show Notification</string>
 
 </resources>

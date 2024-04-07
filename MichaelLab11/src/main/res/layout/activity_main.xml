@@ -19,9 +19,10 @@
         app:tabGravity="fill"
         app:tabIconTint="@drawable/tab_icon_color_selector"
         app:tabIndicatorColor="@color/indicator_color"
-        app:tabMode="fixed"
         app:tabSelectedTextColor="@color/selected_tab_text"
-        app:tabTextAppearance="@style/SelectedTabStyle" />
+        app:tabTextAppearance="@style/SelectedTabStyle"
+        app:tabMaxWidth="150dp"
+        app:tabMinWidth="80dp"/>
 
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/Mic_view_pager"
