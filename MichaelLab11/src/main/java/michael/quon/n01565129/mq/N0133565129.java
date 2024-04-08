@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.AdapterView;
@@ -90,9 +91,10 @@ public class N0133565129 extends Fragment {
         // Handle WebView link clicks
         webView.setWebViewClient(new WebViewClient() {
             @Override
-            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+            public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
+                Uri url = request.getUrl();
                 // Open links in external browser
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(url)));
+                startActivity(new Intent(Intent.ACTION_VIEW, url));
                 return true;
             }
         });
@@ -111,8 +113,8 @@ public class N0133565129 extends Fragment {
             case "NBA":
                 webView.loadUrl("https://www.nba.com/news");
                 break;
-            case "Weather Network":
-                webView.loadUrl("https://www.theweathernetwork.com/ca/weather/ontario/toronto");
+            case "Humber Website":
+                webView.loadUrl("https://humber.ca/");
                 break;
         }
     }
